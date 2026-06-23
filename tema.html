@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tema</title>
+</head>
+<body>
+    <button onclick="changeTema()" id="temachange">테마 변경</button>
+<p class="now">현재테마: 흰색</p>
+
+<script>
+    const temaBtn = document.querySelector("#temachange")
+    const nowText = document.querySelector(".now")
+
+    // 처음 페이지가 열렸을 때 localStorage에 저장된 테마 확인
+    let currentTema = localStorage.getItem("tema")
+
+    // 저장된 값이 없으면 기본값은 흰색
+    if (currentTema === null) {
+        currentTema = "흰색"
+    }
+
+    // 페이지 처음 열릴 때 화면에 적용
+    applyTema()
+
+    function changeTema() {
+        // 현재 흰색이면 블랙으로 변경
+        if (currentTema === "흰색") {
+            currentTema = "블랙"
+        } 
+        // 현재 블랙이면 흰색으로 변경
+        else {
+            currentTema = "흰색"
+        }
+
+        // localStorage에 저장
+        localStorage.setItem("tema", currentTema)
+
+        // 화면에 적용
+        applyTema()
+    }
+
+    function applyTema() {
+        if (currentTema === "블랙") {
+            temaBtn.style.backgroundColor = "black"
+            temaBtn.style.color = "white"
+            nowText.textContent = "현재테마: 블랙"
+        } else {
+            temaBtn.style.backgroundColor = "white"
+            temaBtn.style.color = "black"
+            nowText.textContent = "현재테마: 흰색"
+        }
+    }
+</script>
+</body>
+</html>
